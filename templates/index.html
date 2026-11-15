@@ -76,7 +76,7 @@
 
                         <h5>${{ "%.2f"|format(pc.price) }}</h5>
 
-                        <a href="#" class="btn btn-dark">
+                        <a href="{{ url_for('products.pc_details', pc_id=pc.pc_ID) }}" class="btn btn-dark">
                             View PC
                         </a>
                     </div>

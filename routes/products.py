@@ -35,7 +35,8 @@ def pc_details(pc_id):
     cursor = connection.cursor(dictionary=True)
 
     cursor.execute("""
-        SELECT pc_ID, model_name, price, specs, type
+        SELECT pc_ID, model_name, price, specs, type,
+               promo_text, description, image
         FROM PC
         WHERE pc_ID = %s
     """, (pc_id,))
