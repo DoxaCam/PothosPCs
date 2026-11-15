@@ -1,0 +1,99 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home | PothosPCs{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- HERO TEXT -->
+            <div class="col-lg-6">
+                <h1>Find the Perfect PC for Your Setup</h1>
+
+                <p>
+                    Discover powerful computers and quality components
+                    built to match your needs.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-dark btn-lg me-2">
+                        Shop PCs
+                    </a>
+
+                    <a href="#" class="btn btn-outline-dark btn-lg">
+                        Explore Parts
+                    </a>
+                </div>
+            </div>
+
+            <!-- HERO IMAGE -->
+            <div class="col-lg-6 text-center mt-4 mt-lg-0">
+                <img
+                    src="{{ url_for('static', filename='images/hero-pc.png') }}"
+                    alt="Custom gaming PC"
+                    class="img-fluid hero-image"
+                >
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- FEATURED PCS SECTION -->
+<section class="featured-section py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2>Featured PCs</h2>
+            <p>Explore our available computer builds.</p>
+        </div>
+
+        <div class="row g-4">
+
+            {% for pc in pcs %}
+
+            <div class="col-md-4">
+                <div class="card h-100">
+
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ pc.model_name }}
+                        </h5>
+
+                        <p class="card-text">
+                            {{ pc.specs }}
+                        </p>
+
+                        <p class="text-muted">
+                            Type: {{ pc.type }}
+                        </p>
+
+                        <h5>${{ "%.2f"|format(pc.price) }}</h5>
+
+                        <a href="#" class="btn btn-dark">
+                            View PC
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            {% else %}
+
+            <div class="col-12 text-center">
+                <p>No PCs are currently available.</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

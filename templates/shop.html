@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+
+{% block title %}Shop PCs | PothosPCs{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1>Shop Our PCs</h1>
+        <p class="text-muted">
+            Find the perfect computer for your setup.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        {% for pc in pcs %}
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+
+                <div class="card-body">
+
+                    <span class="badge bg-dark mb-2">
+                        {{ pc.type }}
+                    </span>
+
+                    <h5 class="card-title">
+                        {{ pc.model_name }}
+                    </h5>
+
+                    <p class="card-text text-muted">
+                        {{ pc.specs }}
+                    </p>
+
+                    <h4 class="fw-bold">
+                        ${{ "%.2f"|format(pc.price) }}
+                    </h4>
+
+                    <a href="{{ url_for('products.pc_details', pc_id=pc.pc_ID) }}"
+                        class="btn btn-dark w-100 mt-3">
+                        View PC
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+        {% else %}
+
+        <div class="col-12 text-center">
+            <p>No PCs are currently available.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
