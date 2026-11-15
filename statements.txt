@@ -79,18 +79,30 @@ CREATE TABLE PC (
     model_name VARCHAR(150) NOT NULL,
     price DECIMAL(10,2) NOT NULL,
     specs TEXT NOT NULL,
-    type VARCHAR(50) NOT NULL, 
+    type VARCHAR(50) NOT NULL,
+    promo_text VARCHAR(255),
+    description TEXT NOT NULL,
+    image VARCHAR(255),
     order_ID INT,
     FOREIGN KEY (order_ID) REFERENCES Orders(order_ID)
 		ON DELETE SET NULL
 		ON UPDATE CASCADE
 );
 
-INSERT INTO PC (model_name, price, specs, type)
+INSERT INTO PC (model_name, price, specs, type, promo_text, description, image)
 VALUES
-('Gaming PC Pro', 1299.99, 'AMD Ryzen 7, 32GB RAM, NVIDIA RTX 4070', 'Gaming'),
-('Workstation Elite', 1599.99, 'Intel Core i7, 32GB RAM, NVIDIA RTX 4060', 'Workstation'),
-('Budget Gaming PC', 799.99, 'AMD Ryzen 5, 16GB RAM, NVIDIA RTX 3060', 'Gaming');
+('Gaming PC Pro', 1299.99, 'AMD Ryzen 7, 32GB RAM, NVIDIA RTX 4070', 'Gaming',
+ 'Holiday Sale: Save $100 on the Gaming PC Pro through December 31. Every build is assembled and stress-tested by our team before it ships.',
+ 'Built for high frame rates at 1440p. The Ryzen 7 and RTX 4070 handle the latest games on high settings, and 32GB of RAM leaves room for streaming and multitasking.',
+ NULL),
+('Workstation Elite', 1599.99, 'Intel Core i7, 32GB RAM, NVIDIA RTX 4060', 'Workstation',
+ 'Free shipping on the Workstation Elite this month. Includes a one-year warranty on parts and labor, so you can get to work without the worry.',
+ 'A reliable machine for video editing, 3D modeling and software development. The Core i7 handles heavy multitasking, and the RTX 4060 speeds up rendering and creative apps.',
+ NULL),
+('Budget Gaming PC', 799.99, 'AMD Ryzen 5, 16GB RAM, NVIDIA RTX 3060', 'Gaming',
+ NULL,
+ 'A great entry point into PC gaming. Plays popular titles smoothly at 1080p and has room to upgrade as your needs grow.',
+ NULL);
 
 -- 4. Third-Level Dependent Tables
 CREATE TABLE Service (
