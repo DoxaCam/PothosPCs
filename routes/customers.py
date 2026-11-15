@@ -58,10 +58,16 @@ def register():
                     ))
 
                     connection.commit()
+
+                    session["customer_id"] = cursor.lastrowid
+                    session["customer_name"] = first_name
                     success = "Your account was created successfully!"
 
                 cursor.close()
                 connection.close()
+
+                if success:
+                    return redirect(url_for("main.home"))
 
     return render_template(
         "register.html",

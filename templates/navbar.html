@@ -23,23 +23,37 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Shop</a>
+                    <a class="nav-link" href="{{ url_for('products.shop') }}">Shop</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">Orders</a>
                 </li>
 
+                {% if session.customer_id %}
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Account</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="{{ url_for('customers.logout') }}">Logout</a>
                 </li>
 
+                {% else %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('customers.login') }}">Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('customers.register') }}">Register</a>
+                </li>
+
+                {% endif %}
+
                 <li class="nav-item ms-lg-3">
-                    <a class="btn btn-dark px-4" href="#">
+                    <a class="btn btn-dark px-4" href="{{ url_for('products.shop') }}">
                         Buy Now
                     </a>
                 </li>
